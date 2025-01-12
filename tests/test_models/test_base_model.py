@@ -27,7 +27,7 @@ class TestBasemodel(unittest.TestCase):
     def test_save(self):
         """method that tests for the save method in basemodel"""
         c = BaseModel()
-        sleep(0.1)
+        sleep(2)
         c.save()
         self.assertNotEqual(c.created_at, c.updated_at)
 

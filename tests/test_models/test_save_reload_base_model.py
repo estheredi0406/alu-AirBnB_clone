@@ -38,30 +38,43 @@ class TestBaseModel_save_reload(unittest.TestCase):
         self.assertEqual(new_model.id, model1_id)
 
     def test__file_path(self):
-            """Test that the file_path
-            attribute is a string and the file exists."""
-            new_object = FileStorage()
-            file_path = new_object.file_path()
-            self.assertIsInstance(file_path, str)
-            self.assertTrue(os.path.exists(file_path), "File path does not exist")
+        """Test that the file_path
+        attribute is a string and the file exists."""
+        new_object = FileStorage()
+        file_path = new_object._FileStorage__file_path
+        self.assertIsInstance(file_path, str)
+        self.assertTrue(os.path.exists(file_path), "File path does not exist")
 
     def test__objects(self):
         """Test that the objects
         attribute is a dictionary."""
         new_object = FileStorage()
-        objects = new_object.objects()
+        objects = new_object._FileStorage__objects
         self.assertIsInstance(objects, dict)
 
     def test_all(self):
         """Test that the all method
         returns the __objects attribute."""
-        new_object = FileStorage()
-        objects = new_object.all()
+        objects = storage.all()
         self.assertIsInstance(objects, dict)
 
     def test_new(self):
         """Test that the new method adds
         an object to the __objects attribute."""
-        new_object = FileStorage()
-        new_object.new(self.model)
-        self.assertIn(f"BaseModel.{self.model.id}", new_object.objects())
+        storage.new(self.model)
+        self.assertIn(f"BaseModel.{self.model.id}", storage.all())
+
+    def test_save_storage(self):
+        """Test that the save method of storage
+        serializes __objects to the JSON file."""
+        storage.new(self.model)
+        storage.save()
+        self.assertTrue(os.path.exists("file.json"))
+
+    def test_reload_storage(self):
+        """Test that the reload method of storage
+        deserializes the JSON file to __objects."""
+        storage.new(self.model)
+        storage.save()
+        storage.reload()
+        self.assertIn(f"BaseModel.{self.model.id}", storage.all())

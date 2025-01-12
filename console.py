@@ -10,9 +10,7 @@ import cmd
 
 
 class HBNBCommand(cmd.Cmd):
-    '''
-    Console class
-    '''
+    '''Console class'''
     prompt='(hbnb) '
 
     def do_quit(self, arg):
@@ -20,15 +18,11 @@ class HBNBCommand(cmd.Cmd):
         return True
 
     def do_help (self, arg):
-        '''
-        Help command to show the help
-        '''
+        '''Help command to show the help'''
         return super().do_help(arg)
 
     def do_EOF(self):
-        '''
-        EOF command to exit the program
-        '''
+        '''EOF command to exit the program'''
         return True
 
     def emptyline(self):

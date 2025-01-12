@@ -40,6 +40,7 @@ class TestBasemodel(unittest.TestCase):
         self.assertEqual(d_json["updated_at"], d.updated_at.isoformat())
         self.assertEqual(type(d_json["created_at"]), str)
         self.assertEqual(type(d_json["updated_at"]), str)
+        self.assertEqual(d_json["__class__"], "BaseModel")
 
 
 if __name__ == "__main__":

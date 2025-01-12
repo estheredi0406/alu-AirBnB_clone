@@ -23,6 +23,7 @@ class BaseModel:
     def to_dict(self):
         """Returns the dict representation of BaseModel class"""
         return {
+            "__class__": self.__class__.__name__,
             "id": self.id,
             "created_at": self.created_at.isoformat(),
             "updated_at": self.updated_at.isoformat()

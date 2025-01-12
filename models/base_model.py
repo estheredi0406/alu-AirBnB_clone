@@ -19,7 +19,7 @@ class BaseModel:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
-        from models.engine import storage
+        from models import storage
         storage.new(self)
 
     def __str__(self):
@@ -32,7 +32,7 @@ class BaseModel:
         attribute with the current datetime and save to storage
         """
         self.updated_at = datetime.now()
-        from models.engine import storage
+        from models import storage
         # print(storage.all())
         storage.save()
 

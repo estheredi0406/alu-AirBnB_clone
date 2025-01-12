@@ -27,9 +27,11 @@ class TestBasemodel(unittest.TestCase):
     def test_save(self):
         """method that tests for the save method in basemodel"""
         c = BaseModel()
+        past = c.updated_at
         sleep(2)
         c.save()
-        self.assertNotEqual(c.created_at, c.updated_at)
+        present = c.updated_at
+        self.assertNotEqual(past, present)
 
     def test_to_dict(self):
         """method that tests for the to_dict method in basemodel"""

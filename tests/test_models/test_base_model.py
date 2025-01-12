@@ -1,15 +1,46 @@
-#!/usr/bin/python3
-from models.base_model import BaseModel
+#!/usr/bin/env python3
+"""
+creation of a unittest for the base class
+"""
 import unittest
+from models.base_model import BaseModel
+from datetime import datetime
+import uuid
+from time import sleep
 
-my_model = BaseModel()
-my_model.name = "My First Model"
-my_model.my_number = 89
-print(my_model)
-my_model.save()
-print(my_model)
-my_model_json = my_model.to_dict()
-print(my_model_json)
-print("JSON of my_model:")
-for key in my_model_json.keys():
-    print("\t{}: ({}) - {}".format(key, type(my_model_json[key]), my_model_json[key]))
+
+class TestBasemodel(unittest.TestCase):
+    """creation of tester"""
+    def test_init(self):
+        """function which tests the constructor of the basemodel"""
+        a = BaseModel()
+        self.assertIsInstance(a.id, str)
+        self.assertIsInstance(a.updated_at, datetime)
+        self.assertIsInstance(a.updated_at, datetime)
+
+    def test_str_(self):
+        """method that tests for the string returned in basemodel"""
+        b = BaseModel()
+        exp = f"[BaseModel] ({b.id}) {b.__dict__}"
+        self.assertEqual(str(b), exp)
+
+    def test_save(self):
+        """method that tests for the save method in basemodel"""
+        c = BaseModel()
+        sleep(0.1)
+        c.save()
+        self.assertNotEqual(c.created_at, c.updated_at)
+
+    def test_to_dict(self):
+        """method that tests for the to_dict method in basemodel"""
+        d = BaseModel()
+        d_json = d.to_dict()
+        self.assertEqual(d_json["id"], d.id)
+        self.assertEqual(d_json["created_at"], d.created_at.isoformat())
+        self.assertEqual(d_json["updated_at"], d.updated_at.isoformat())
+        self.assertEqual(type(d_json["created_at"]), str)
+        self.assertEqual(type(d_json["updated_at"]), str)
+
+
+if __name__ == "__main__":
+    unittest.main()

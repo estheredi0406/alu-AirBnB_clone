@@ -8,7 +8,7 @@ from models.base_model import BaseModel
 
 
 class HBNBCommand(cmd.Cmd):
-    """Command Interpreter Class"""
+    """Command Interpreter Classes"""
     prompt = "(hbnb) "
 
     classes = [

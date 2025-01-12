@@ -27,9 +27,11 @@ class TestBasemodel(unittest.TestCase):
     def test_save(self):
         """method that tests for the save method in basemodel"""
         c = BaseModel()
-        sleep(0.1)
+        past = c.updated_at
+        sleep(2)
         c.save()
-        self.assertNotEqual(c.created_at, c.updated_at)
+        present = c.updated_at
+        self.assertNotEqual(past, present)
 
     def test_to_dict(self):
         """method that tests for the to_dict method in basemodel"""
@@ -40,7 +42,7 @@ class TestBasemodel(unittest.TestCase):
         self.assertEqual(d_json["updated_at"], d.updated_at.isoformat())
         self.assertEqual(type(d_json["created_at"]), str)
         self.assertEqual(type(d_json["updated_at"]), str)
-        self.assertEqual(d_json['__class__'], 'BaseModel')
+        self.assertEqual(d_json["__class__"], "BaseModel")
 
 
 if __name__ == "__main__":

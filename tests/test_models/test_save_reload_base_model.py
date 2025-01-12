@@ -41,7 +41,7 @@ class TestBaseModel_save_reload(unittest.TestCase):
         """Test that the file_path
         attribute is a string and the file exists."""
         new_object = FileStorage()
-        file_path = new_object._FileStorage__file_path
+        file_path = new_object.file_path()
         self.assertIsInstance(file_path, str)
         self.assertTrue(os.path.exists(file_path), "File path does not exist")
 
@@ -49,8 +49,8 @@ class TestBaseModel_save_reload(unittest.TestCase):
         """Test that the objects
         attribute is a dictionary."""
         new_object = FileStorage()
-        objects = new_object._FileStorage__objects
-        self.assertIsInstance(objects, dict)
+        f = new_object.objects()
+        self.assertIsInstance(f, dict)
 
     def test_all(self):
         """Test that the all method

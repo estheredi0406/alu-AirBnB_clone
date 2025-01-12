@@ -23,9 +23,7 @@ class TestBaseModelStorage(unittest.TestCase):
     def test_file_path(self):
         """Test that the file_path attribute is a string and the file exists."""
         new_object = FileStorage()
-        file_path = new_object.file_path()
-        print(f"Debug: file_path = {file_path}")  # Debugging line
-        # Ensure the file is created
+        file_path = new_object.file_path
         with open(file_path, 'w') as f:
             f.write('')
         self.assertIsInstance(file_path, str)
@@ -34,7 +32,7 @@ class TestBaseModelStorage(unittest.TestCase):
     def test_objects(self):
         """Test that the objects attribute is a dictionary."""
         new_object = FileStorage()
-        f = new_object.objects()
+        f = new_object.objects
         self.assertIsInstance(f, dict)
 
     def test_all(self):

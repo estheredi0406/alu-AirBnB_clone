@@ -38,11 +38,12 @@ class TestBaseModel_save_reload(unittest.TestCase):
         self.assertEqual(new_model.id, model1_id)
 
     def test__file_path(self):
-        """Test that the file_path
-        attribute is a string."""
-        new_object = FileStorage()
-        file_path = new_object.file_path()
-        self.assertIsInstance(file_path, str)
+            """Test that the file_path
+            attribute is a string and the file exists."""
+            new_object = FileStorage()
+            file_path = new_object.file_path()
+            self.assertIsInstance(file_path, str)
+            self.assertTrue(os.path.exists(file_path), "File path does not exist")
 
     def test__objects(self):
         """Test that the objects

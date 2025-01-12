@@ -1,24 +1,23 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
+"""Command Interpreter"""
+
 import cmd
-
-"""
-This module contains the HBNBCommand class, which is a command interpreter
-for the HBNB project. It provides a command-line interface to interact with
-the application.
-
-Classes:
-    HBNBCommand: A command interpreter class that inherits from cmd.Cmd.
-
-Methods:
-    do_quit(self, arg): Quit command to exit the program.
-    do_EOF(self, arg): EOF command to exit the program.
-    emptyline(self): Do nothing on empty input line.
-"""
+import sys
+from models import storage
+from models.base_model import BaseModel
 
 
 class HBNBCommand(cmd.Cmd):
-    """Command interpreter for HBNB"""
-    prompt = '(hbnb) '
+    """Command Interpreter Class"""
+    prompt = "(hbnb) "
+
+    classes = [
+            'BaseModel',
+            ]
+
+    def emptyline(self):
+        """Do nothing on empty input line"""
+        pass
 
     def do_quit(self, arg):
         """Quit command to exit the program"""
@@ -26,13 +25,12 @@ class HBNBCommand(cmd.Cmd):
 
     def do_EOF(self, arg):
         """EOF command to exit the program"""
-        print()
         return True
 
-    def emptyline(self):
-        """Do nothing on empty input line"""
-        pass
+    def do_help(self, arg):
+        """Print help message"""
+        super().do_help(arg)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     HBNBCommand().cmdloop()

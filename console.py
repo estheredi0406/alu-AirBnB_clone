@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 import cmd
-
+"""This module contains the HBNBCommand class"""
 
 class HBNBCommand(cmd.Cmd):
     """Command interpreter for HBNB"""

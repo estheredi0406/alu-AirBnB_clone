@@ -1,6 +1,20 @@
 #!/usr/bin/python3
 import cmd
-"""This module contains the HBNBCommand class"""
+
+"""
+This module contains the HBNBCommand class, which is a command interpreter
+for the HBNB project. It provides a command-line interface to interact with
+the application.
+
+Classes:
+    HBNBCommand: A command interpreter class that inherits from cmd.Cmd.
+
+Methods:
+    do_quit(self, arg): Quit command to exit the program.
+    do_EOF(self, arg): EOF command to exit the program.
+    emptyline(self): Do nothing on empty input line.
+"""
+
 
 class HBNBCommand(cmd.Cmd):
     """Command interpreter for HBNB"""

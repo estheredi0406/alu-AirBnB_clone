@@ -30,9 +30,10 @@ class FileStorage:
         (only if the JSON file (__file_path) exists)."""
         try:
             with open(self.__file_path, 'r') as f:
-                for key, value in json.load(f).items():
-                    self.__objects = {key: self.classes()
-                                      [value["__class__"]](**value)}
+                objects = json.load(f)
+                for key, value in objects.items():
+                    self.__objects[key] = \
+                        self.classes()[value["__class__"]](**value)
         except FileNotFoundError:
             pass
 

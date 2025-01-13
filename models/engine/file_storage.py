@@ -18,7 +18,7 @@ class FileStorage:
         """Getter for __file_path."""
         return self.__file_path
 
-    @property    
+    @property
     def objects(self):
         """Getter for __objects."""
         return self.__objects

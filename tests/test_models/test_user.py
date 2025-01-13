@@ -60,4 +60,7 @@ class TestCity(unittest.TestCase):
         self.assertEqual(my_user.last_name, "")
         my_user.first_name = "Bar"
         self.assertEqual(my_user.first_name, "Bar")
-if __name__ == "__main__":    unittest.main() 
+
+
+if __name__ == "__main__":
+    unittest.main()

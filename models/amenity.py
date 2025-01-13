@@ -6,7 +6,7 @@ Module documentation
 from models.base_model import BaseModel
 
 
-class Review(BaseModel):
+class Amenity(BaseModel):
     """Review class Docs"""
     place_id = ""
     user_id = ""

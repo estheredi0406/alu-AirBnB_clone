@@ -24,7 +24,8 @@ class TestBaseModelStorage(unittest.TestCase):
         self.assertIn(key, storage.all())
 
     def test_storage_reload(self):
-        """Test that storage.reload() correctly reloads the saved BaseModel instance."""
+        """Test that storage.reload()
+        correctly reloads the saved BaseModel instance."""
         self.model.save()
         storage.save()
         storage.reload()
@@ -38,6 +39,7 @@ class TestBaseModelStorage(unittest.TestCase):
             os.remove(file_path)
         self.storage.reload()
         self.assertNotEqual(len(self.storage.all()), 0)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -21,10 +21,11 @@ class TestBaseModelStorage(unittest.TestCase):
             os.remove("file.json")
 
     def test_file_path(self):
-        """Test that the file_path attribute is a string and the file exists."""
+        """Test that the file_path attribute
+        is a string and the file exists."""
         new_object = FileStorage()
-        file_path = new_object.file_path()
-        print(f"Debug: file_path = {file_path}")  # Debugging line
+        file_path = new_object.file_path
+        print(f"Debug: file_path = {file_path}")
         # Ensure the file is created
         with open(file_path, 'w') as f:
             f.write('')
@@ -34,7 +35,7 @@ class TestBaseModelStorage(unittest.TestCase):
     def test_objects(self):
         """Test that the objects attribute is a dictionary."""
         new_object = FileStorage()
-        f = new_object.objects()
+        f = new_object.objects
         self.assertIsInstance(f, dict)
 
     def test_all(self):
@@ -43,18 +44,21 @@ class TestBaseModelStorage(unittest.TestCase):
         self.assertIsInstance(objects, dict)
 
     def test_new(self):
-        """Test that the new method adds an object to the __objects attribute."""
+        """Test that the new method adds an
+        object to the __objects attribute."""
         storage.new(self.model)
         self.assertIn(f"BaseModel.{self.model.id}", storage.all())
 
     def test_save_storage(self):
-        """Test that the save method of storage serializes __objects to the JSON file."""
+        """Test that the save method of storage
+        serializes __objects to the JSON file."""
         storage.new(self.model)
         storage.save()
         self.assertTrue(os.path.exists("file.json"))
 
     def test_reload_storage(self):
-        """Test that the reload method of storage deserializes the JSON file to __objects."""
+        """Test that the reload method of
+        storage deserializes the JSON file to __objects."""
         storage.new(self.model)
         storage.save()
         storage.reload()

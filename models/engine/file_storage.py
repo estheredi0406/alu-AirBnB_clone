@@ -1,6 +1,12 @@
 import json
 from models.base_model import BaseModel
 from models.user import User
+from models.amenity import Amenity
+from models.city import City
+from models.review import Review
+from models.place import Place
+from models.review import Review
+from models.state import State
 import models
 import os
 
@@ -57,4 +63,9 @@ class FileStorage:
         return {
             "BaseModel": BaseModel,
             "User": User,
+            "Amenity":Amenity,
+            "State": State,
+            "Review": Review,
+            "Place":Place,
+            "City":City,
         }

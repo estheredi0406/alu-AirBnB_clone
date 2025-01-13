@@ -1,5 +1,6 @@
 import json
 from models.base_model import BaseModel
+from models.user import User
 import models
 import os
 
@@ -55,4 +56,5 @@ class FileStorage:
         """Returns a dictionary of valid classes and their references."""
         return {
             "BaseModel": BaseModel,
+            "User": User,
         }

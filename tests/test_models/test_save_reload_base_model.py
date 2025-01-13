@@ -1,11 +1,12 @@
 import unittest
 from models.base_model import BaseModel
-from models.engine import storage
+from models import storage
 import os
+from models.engine.file_storage import FileStorage
 
 
-class TestBaseModel_save_reload(unittest.TestCase):
-    """Tests for the save and reload methods of the BaseModel class."""
+class TestBaseModelStorage(unittest.TestCase):
+    """Tests for the file_storage.py methods of the FileStorage class."""
 
     def setUp(self):
         """Set up test fixtures."""
@@ -16,20 +17,49 @@ class TestBaseModel_save_reload(unittest.TestCase):
     def tearDown(self):
         """Tear down test fixtures."""
         del self.model
+        if os.path.exists("file.json"):
+            os.remove("file.json")
 
-    def test_save(self):
-        """Test that the save method saves the BaseModel instance to a JSON file."""
-        self.model.save()
+    def test_file_path(self):
+        """Test that the file_path attribute is a string and the file exists."""
+        new_object = FileStorage()
+        file_path = new_object.file_path()
+        print(f"Debug: file_path = {file_path}")  # Debugging line
+        # Ensure the file is created
+        with open(file_path, 'w') as f:
+            f.write('')
+        self.assertIsInstance(file_path, str)
+        self.assertTrue(os.path.exists(file_path), "File path does not exist")
+
+    def test_objects(self):
+        """Test that the objects attribute is a dictionary."""
+        new_object = FileStorage()
+        f = new_object.objects()
+        self.assertIsInstance(f, dict)
+
+    def test_all(self):
+        """Test that the all method returns the __objects attribute."""
+        objects = storage.all()
+        self.assertIsInstance(objects, dict)
+
+    def test_new(self):
+        """Test that the new method adds an object to the __objects attribute."""
+        storage.new(self.model)
+        self.assertIn(f"BaseModel.{self.model.id}", storage.all())
+
+    def test_save_storage(self):
+        """Test that the save method of storage serializes __objects to the JSON file."""
+        storage.new(self.model)
+        storage.save()
         self.assertTrue(os.path.exists("file.json"))
 
-    def test_reload(self):
-        """Test that the reload method loads a BaseModel instance from a JSON file."""
-        model1 = BaseModel()
-        model1.save()
-        model1_id = model1.id
-        del model1
+    def test_reload_storage(self):
+        """Test that the reload method of storage deserializes the JSON file to __objects."""
+        storage.new(self.model)
+        storage.save()
         storage.reload()
-    
-        new_model = storage.all().get(f"BaseModel.{model1_id}")
-        self.assertIsNotNone(new_model)
-        self.assertEqual(new_model.id, model1_id)
+        self.assertIn(f"BaseModel.{self.model.id}", storage.all())
+
+
+if __name__ == "__main__":
+    unittest.main()

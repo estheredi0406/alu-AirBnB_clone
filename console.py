@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Command Interpreter"""
+"""Command interpreter"""
 
 import cmd
 from models import storage

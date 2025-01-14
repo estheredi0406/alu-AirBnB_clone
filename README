@@ -2,7 +2,7 @@
 
 This project is a simplified clone of the AirBnB web application. It includes a command-line interface (CLI) for managing objects, a storage engine for persisting data, and a web static front-end.
 
-## Table of Contents
+##Table of Contents
 
 - Project Overview
 - Features
@@ -57,9 +57,9 @@ Available commands:
 all [<class>]
 
 : Shows all instances, optionally filtered by class.
-- `update <class> <id> <attribute> <value>`: Updates an instance's attribute.
+- `update <class> <id> <attribute> <value>`: Updates an instance attribute.
 
-### Example
+###Example
 
 ```sh
 (hbnb) create User
@@ -121,11 +121,5 @@ all [<class>]
 ## Contributing
 
 Contributions are welcome! Please read the CONTRIBUTING.md file for guidelines on how to contribute to this project.
-
-## License
-
-This project is licensed under the MIT License. See the LICENSE file for more details.
-
----
 
 *This project is maintained by Esther Sessenou Adi and UTERAMAHORO Avellin Bonaparte.*

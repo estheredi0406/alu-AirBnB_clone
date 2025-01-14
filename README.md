@@ -2,7 +2,7 @@
 
 This project is a simplified clone of the AirBnB web application. It includes a command-line interface (CLI) for managing objects, a storage engine for persisting data, and a web static front-end.
 
-##Table of Contents
+## Table of Contents
 
 - Project Overview
 - Features

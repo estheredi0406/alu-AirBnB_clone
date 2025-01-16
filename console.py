@@ -1,5 +1,5 @@
-#!/usr/bin/env python3
-"""Command Interpreter"""
+#!/usr/bin/python3
+"""Command interpreter"""
 
 import cmd
 from models import storage
@@ -129,5 +129,5 @@ class HBNBCommand(cmd.Cmd):
                 obj.save()
 
 
-if __name__ == '_main_':
+if __name__ == '__main__':
     HBNBCommand().cmdloop()
